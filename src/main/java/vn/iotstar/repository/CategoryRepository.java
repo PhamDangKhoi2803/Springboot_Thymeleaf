@@ -15,4 +15,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 		//Tìm kiếm và Phân trang 
 		Page<Category> findByCategoryNameContaining(String name,Pageable pageable); 
 		Optional<Category> findByCategoryName(String name);
+		
 }
