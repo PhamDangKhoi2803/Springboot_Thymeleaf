@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lập trình Web ST2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- CSS -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <!-- JavaScript -->
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="/layout/header :: header"></header>
+<a th:href="@{/api/category/add}">Add Category</a>
+<table border="1" width="100%">
+    <tr>
+        <th>STT</th>
+        <th>Images</th>
+        <th>CategoryID</th>
+        <th>CategoryName</th>
+    </tr>
+
+    <tr th:each="cate, stat : ${list}">
+        <td th:text="${stat.index + 1}"></td>
+
+        <td>
+            <!-- <img height="150" width="200"
+                 th:src="${#strings.substring(cate.icon, 0, 5) == 'https' ? cate.icon : '/image?fname=' + cate.icon}" /> -->
+                 <img style="width: 100px; height: 100px;" th:src="${cate.icon}"/>     
+        </td>
+
+        <td th:text="${cate.categoryId}"></td>
+        <td th:text="${cate.categoryName}"></td>
+
+        <td>
+            <a th:href="@{/api/category/edit/{id}(id=${cate.categoryId})}">Sửa</a> |
+            <a th:href="@{/api/category/delete/{id}(id=${cate.categoryId})}">Xóa</a> |
+        </td>
+    </tr>
+</table>
+<footer th:replace="/layout/footer :: footer"></footer>
+</body>
+</html>
